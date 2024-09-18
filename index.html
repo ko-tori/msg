@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h4>Messages</h4> -->
+    <div id="cal-heatmap"></div>
+    <script>
+        const cal = new CalHeatmap();
+        cal.paint({
+            range: 8,
+            date: {
+                start: new Date('2017-01-01'),
+                timezone: 'utc',
+            },
+            data: {
+                source: './data.json',
+                type: 'json',
+                x: 't',
+                y: x => Math.min(x.c, 600) / 600,
+            },
+            verticalOrientation: true,
+            domain: {
+                type: 'year',
+                label: {
+                    position: 'left',
+                    textAlign: 'end',
+                    width: 50,
+                    offset: { x: -10, y: 5 },
+                },
+            },
+            subDomain: { type: 'day' },
+            scale: {
+                color: {
+                    scheme: 'Blues',
+                    type: 'sqrt',
+                    domain: [0, 2],
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
