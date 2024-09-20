@@ -19,18 +19,19 @@
     <!-- <h4>Messages</h4> -->
     <div id="cal-heatmap"></div>
     <script>
+        const CAP = 1000;
         const cal = new CalHeatmap();
         cal.paint({
             range: 8,
             date: {
-                start: new Date('2017-01-01'),
+                start: new Date('2017-01-17'),
                 timezone: 'utc',
             },
             data: {
                 source: './data.json',
                 type: 'json',
                 x: 't',
-                y: x => Math.min(x.c, 600) / 600,
+                y: x => Math.sqrt(Math.min(x.c, CAP) / CAP),
             },
             verticalOrientation: true,
             domain: {
@@ -47,7 +48,7 @@
                 color: {
                     scheme: 'Blues',
                     type: 'sqrt',
-                    domain: [0, 2],
+                    domain: [0, 2.5],
                 },
             },
         });

@@ -1,14 +1,14 @@
 const fs = require('node:fs');
 
 let m = [];
-for (let i = 1; i <= 4; i++) {
+for (let i = 1; i <= 52; i++) {
     const s = JSON.parse(fs.readFileSync(`message_${i}.json`, 'utf8'));
     m = m.concat(s.messages)
 }
 
 m = m.reverse()
 
-const start = 1694926800; // sun sep 17 2023
+const start = 1484611200; // jan 17 2017
 const day = 86400;
 
 const counts = [{
